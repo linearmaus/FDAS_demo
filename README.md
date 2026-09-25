@@ -5,8 +5,18 @@ This code is written as a *science research training* and may not reach the stan
 So he writes all his *confusion* and *solution* below, in which may be helpful to those who want to learn and write a similar code.
 The code contains about 3 weeks of work.
 
-- **The math algorithm**
-**Fourier Transform (FT)** is the math method of doing inner product to gain the value of a Harmonic component.
+## **The math algorithm**
+### **Fourier Transform (FT)** 
+Fourier Transform is the math method of doing inner product of signal and periodic base function to gain the value of a Harmonic component.
+
 $$
-Spectrum(\omega) = \int_{-\inf}^{\inf} Signal(t^*)exp(i*\omega*t^*)dt^*
+Spectrum(\omega) = Norm_factor * \int_{-\inf}^{\inf} Signal(t^*)*exp(1j*\omega*t^*)dt^*
 $$
+
+**Discrete Fourier Transform (DFT)** is a discreter version of FT, and it can applied to computer program. And **Fast Fourier Transfrom** can accelerate the calculate of DFT. 
+
+DFT is the same to the process below:
+- given the $\omega$ bin.
+- rotate each bin in time domain by angle of $\omega * t$ in complex plane.
+- sum all the after-rotation time bin in complex plane.
+- given the Spectrum value of $\Omega$ bin. 
