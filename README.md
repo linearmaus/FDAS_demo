@@ -7,6 +7,6 @@ The code contains about 3 weeks of work.
 
 - **The math algorithm**
 **Fourier Transform (FT)** is the math method of doing inner product to gain the value of a Harmonic component.
-  $$
-  Spectrum(\omega) = \int_{-\inf}^{\inf} Signal()
-  $$
+$$
+Spectrum(\omega) = \int_{-\inf}^{\inf} Signal(t^*)exp(i*\omega*t^*)dt^*
+$$
