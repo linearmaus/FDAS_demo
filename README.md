@@ -67,33 +67,47 @@ We want to reconstruct the profile, to which we must **break down the signal int
 $Signal(t) = \Sigma_n A_nf_n(t)$
 Fourier Transform is **linear** which means $\hat F (af_1(t)+bf_2(t)) = a \hat F(f_1(t)) + b \hat F(f_2(t))$ 
 So:
+
 $$
 \hat F(Signal(t)) = \hat F(\Sigma_n A_n f_n) = \Sigma_n A_n \hat F(f_n(t))
 $$
+
 for $f_n = rect(x)$ -> $\hat F(f_n) = sinc(x)$ which performs better for discrete signal, for which it can be seen as the sum up of all the bins- each is a small rect function- although it's because of the "leak" of fourier bin. More details in [reference paper](https://doi.org/10.1086/342285) at page 7. Things are different for chirp signal, which the frequency changes linearly.
+
 $$
 \Phi(t) = f_0 t + \frac{1}{2}f_1t^2 + \phi
 $$
+
 and $sinc(x)$ is not a good template anymore. Instead, we uses 
+
 $$
 f(t) = cos(f_0t+\frac{1}{2}f_1t^2 + \phi)
 $$
+
 as the function base. So we need to know what the $\hat F(f_{f0,f1}(t))$ is. In [reference paper](https://doi.org/10.1086/342285) page 15, it is written in the form of fourier bin index r ($r_o$ is the center bin, $\dot r$ is the derivative of r) and time bin index u: 
+
 $$
 n(u) = a * cos[2\pi(r_o u + \frac{\dot r} 2 u^2)+\phi] = \frac{a}{2}[e^{2\pi i(r_ou+\frac{\dot r}{2}u^2)}e^{i\phi}+e^{-2\pi i(r_ou+\frac{\dot r}{2}u^2)}e^{-i\phi}],~~~(34b)
 $$
+
 After some carefully math calculation we can get $\hat F(n(u))$ ：
+
 $$
 A_{r_c'} = \frac{aN}{2}e^{i\phi}\int_0^1e^{i\pi (\dot ru^2+2q_ru)}du,~~~(35)
 $$
+
 But there's a little mistake in the $formula (36)$ and $(38), (39)$ which should be
+
 $$
 \int_0^1e^{i\pi(\dot r u^2 + 2q_r u)}du = \frac1 {\sqrt{2\dot r}}e^{-i\pi \frac{q_r^2}{\dot r}}([C(Y_r)-C(Z_r)]+i[S(Y_r)-S(Z_r)]),~~~(36)
 $$
+
 So the correct template formula should be
+
 $$
 A_{r_c,\dot r} = \Sigma_{k = [r]-m/2}^{k = [r]+m/2} A_k\frac 1 {\sqrt{2\dot r}}e^{i\pi \frac{q_k^2}{\dot r}}([C(Y_r)-C(Z_r)]-i[S(Y_r)-S(Z_r)]),~~~(39)
 $$
+
 **There is a addition multiple of i in the [reference paper](https://doi.org/10.1086/342285)**. 
 
 ## Code implementation
@@ -303,16 +317,20 @@ for n in range(n_harm):
 
 ### Rotation caused by time shift
 Let's assume some signal become a rect-like function in fourier domain. We simplify the problem by consider only 3 bin,
+
 $(\omega-d\omega)*t, (\omega*t), (\omega+d\omega)*t$
+
 If we shift the time to t+dt,
+
 $(\omega-d\omega)*(t+dt), (\omega)*(t+dt), (\omega+d\omega)*(t+dt)$
+
 There is not only a common $\delta \phi = \omega * dt$, but also a small rotation phase $(-d\omega * dt), 0, (d\omega * dt)$. It's a second order term.
 
 ### Matched filtering
 If we have a time series $f(t)$ which is normalized, and we have a template $F(t)$ which is also normalized (They are all real), the convolution
 
 $$
-C(t^*) = \int_{-inf}^{inf}f(t)F(t-t^*)dt
+C(t^{\*}) = \int_{-\infty}^{\infty}f(t)F(t-t^*)dt
 $$
 
 Only reaches **1** when the "shape" of template matches the signal and time delay t* = 0. If we do this in Fourier domain, the convolution will have a phase but its **magnitude** still reaches **1**. In this code we did not consider the convolution- we just reconstruct the profile using given frequency and f_dot. However, the code is same to the convolution when we swipes through different $t^*$. 
