@@ -39,7 +39,7 @@ Basically the method is doing such thing:
 Fourier Transform is the math method of doing inner product of signal and periodic base function to gain the value of a Harmonic component.
 
 $$
-Spectrum(\omega) = Normfactor * \int_{-\inf}^{\inf} Signal(t^*)*e^{i\omega t^*}dt^*
+Spectrum(\omega) = Normfactor * \int_{-\infty}^{\infty} Signal(t^*)*e^{i\omega t^*}dt^*
 $$
 
 We write this as $Spectrum(\omega) = \hat F(Signal(t))$ where f hat is the Fourier transform. 
