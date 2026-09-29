@@ -3,7 +3,7 @@ A small piece of code written by Charlie Li (Li Chengran) in his summer research
 
 ## Directory
 [General View](#general-view)
-[APN reference](#apn-reference)
+[API reference](#api-reference)
 [Math method](#the-math-algorithm)
 [Code implementation](#code-implementation)
 [Appendix](appendix)
@@ -17,7 +17,7 @@ Basically the method is doing such thing:
 - calculate the S/N, which should be boosted
 - finding the best S/N to determine the best f0 and f1.
 
-## APN reference
+## API reference
 
 **Mostly used functions are below.**
 
