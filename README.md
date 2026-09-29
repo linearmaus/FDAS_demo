@@ -318,13 +318,13 @@ for n in range(n_harm):
 ### Rotation caused by time shift
 Let's assume some signal become a rect-like function in fourier domain. We simplify the problem by consider only 3 bin,
 
-$(\omega-d\omega)*t$, $(\omega*t)$, $(\omega+d\omega)*t$
+$(\omega-d\omega) \ast t$, $(\omega \ast t)$, $(\omega+d\omega) \ast t$
 
 If we shift the time to t+dt,
 
-$(\omega-d\omega)*(t+dt)$, $(\omega)*(t+dt)$, $(\omega+d\omega)*(t+dt)$
+$(\omega-d\omega) \ast (t+dt)$, $(\omega) \ast (t+dt)$, $(\omega+d\omega) \ast (t+dt)$
 
-There is not only a common $\delta \phi = \omega * dt$, but also a small rotation phase $(-d\omega * dt)$, 0, $(d\omega * dt)$. It's a second order term.
+There is not only a common $\delta \phi = \omega * dt$, but also a small rotation phase $(-d\omega \ast dt)$, 0, $(d\omega \ast dt)$. It's a second order term.
 
 ### Matched filtering
 If we have a time series $f(t)$ which is normalized, and we have a template $F(t)$ which is also normalized (They are all real), the convolution
