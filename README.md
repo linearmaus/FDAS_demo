@@ -22,7 +22,7 @@ Basically the method is doing such thing:
 **Mostly used functions are below.**
 
 ### `_chirp_recon(spectrum, df, f0, f1, n_harm, ker_half_len, phase_bin_num, *, debugarray = False, center=False)`
-**using `from FDAS_core import _chirp_recon` to import.**
+**using `from reconstruct_core import _chirp_recon` to import.**
 **function to reconstruct the profile using given frequency and its first order derivative.** `spectrum` is the spectrum we get using rfft. `df` is the step length of spectrum in **Hz**. `f0` is the frequency at the begining of the signal in **Hz**. `f1` is the derivative of frequency in **Hz/s**.`n_harm` is the number of harmonics we want to calculate.`ker_half_len` is the half length of the kernel, in bins. The real length of the kernel is $2*ker\_half\_len+1$. `phase_bin_num` is the size of reconstructed profile, and it will be set as the maximum of the parameter sent in and the twice of the harmonic numbers. `debugarray` is chosible, set to `True` will make the function return the value of harmonics instead of the profile. `center` is chosible, set to `True` will automatically set the signal to the center of the window, which will break the phase consistency between different parts- **The reference point of the profile phase is at the center of the signal.**
 **returns `profile` in length of the biggest of `2*n_harms` and `phase_bin_num`.**
 
